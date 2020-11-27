@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Api } from '../models';
+import { NewsDatabase } from '../news.database';
 
 @Component({
   selector: 'app-apikey',
@@ -12,7 +14,7 @@ export class ApikeyComponent implements OnInit {
   apiForm: FormGroup
   apiInput: FormControl
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private newsDB: NewsDatabase) {
     
   }
 
@@ -26,9 +28,21 @@ export class ApikeyComponent implements OnInit {
     this.apiForm.reset()
     this.router.navigate([ '/countrylist' ])
   }
-  deleteAPI() {}
+  
 
-  addAPI() {
-    console.log('added api: ', this.apiForm.value)
+  async addAPI() {
+    console.log('added api: ', this.apiForm.get('apiInput').value)
+    const key: Api = {
+      id: 1,
+      apikey: this.apiForm.get('apiInput').value
+    }
+    await this.newsDB.addApi(key)
+    this.router.navigate([ '/countrylist' ])
   }
+
+  async deleteAPI() {
+    await this.newsDB.delete()
+
+  }
+
 }

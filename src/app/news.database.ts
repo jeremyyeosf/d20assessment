@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import Dexie from 'dexie';
+import { ApikeyComponent } from './apikey/apikey.component';
 import { Api, Country, CountryList, Article, NewsArticles} from './models';
 
 @Injectable()
@@ -9,29 +10,24 @@ export class NewsDatabase extends Dexie {
 
   constructor() {
     // database name
-    super('apiDB')
+    super('api')
 
     // setup the schema for v1
     this.version(1).stores({
-        api: "api"
+        api: '++id, apikey'
     })
 
     // get a reference to the todo collection
     this.api = this.table('api')
   }
 
-//   async getTodoSummary(): Promise<TodoSummary[]> {
-//     return (await this.todo.toArray())
-//       .map(d => {
-//         return {
-//           id: d.id,
-//           title: d.title
-//         } as TodoSummary
-//       })
-//   }
 
-  async addTodo(t: Api): Promise<any> {
-    return await this.api.put(t)
+  async addApi(key: Api): Promise<any> {
+    return await this.api.add(key)
+  }
+
+  async deleteApi(key: Api): Promise<any> {
+      return await this.api.clear()
   }
 
 }

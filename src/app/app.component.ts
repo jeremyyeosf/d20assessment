@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  apikey: string = ''
+  apikey: string = '1bd572f98198417e92b53bf53f861733'
   // apikey: string = '1bd572f98198417e92b53bf53f861733'
   constructor(private router: Router) {
   }
