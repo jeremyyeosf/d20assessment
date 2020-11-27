@@ -9,7 +9,7 @@
     
     <div class="row">
         <button type="button"  class="col btn btn-primary" (click)="goBack()">Back</button>
-        <button type="button"  class="col btn btn-danger" (click)="deleteAPI()">Delete</button>
+        <button type="button"  class="col btn btn-danger" (click)="deleteAPI()" [disabled]="apiForm.invalid">Delete</button>
         <button type="button"  class="col btn btn-warning" (click)="addAPI()" [disabled]="apiForm.invalid">Add</button>
     </div>
     

@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component';
 import { CountrylistComponent } from './countrylist/countrylist.component';
@@ -14,7 +15,7 @@ const ROUTES: Routes = [
   // { path: '', component: AppComponent },
   { path: 'countrylist', component: CountrylistComponent },
   { path: 'apikey', component: ApikeyComponent },
- // { path: 'todo/:todoId', component: NewsComponent  },
+ { path: 'countrylist/:countryName', component: NewsComponent  },
   { path: '**', redirectTo: '/', pathMatch: 'full' }
 ]
 
@@ -29,7 +30,8 @@ const ROUTES: Routes = [
     BrowserModule,
     RouterModule.forRoot(ROUTES),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
     
 
   ],

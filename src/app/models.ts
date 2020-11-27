@@ -1,6 +1,6 @@
 
   export interface Api {
-      id: number;
+      
     apikey: string;
   }
 

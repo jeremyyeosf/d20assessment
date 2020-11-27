@@ -33,7 +33,7 @@ export class ApikeyComponent implements OnInit {
   async addAPI() {
     console.log('added api: ', this.apiForm.get('apiInput').value)
     const key: Api = {
-      id: 1,
+      
       apikey: this.apiForm.get('apiInput').value
     }
     await this.newsDB.addApi(key)
@@ -41,7 +41,11 @@ export class ApikeyComponent implements OnInit {
   }
 
   async deleteAPI() {
-    await this.newsDB.delete()
+    const key: Api = {
+      apikey: this.apiForm.get('apiInput').value
+    }
+    await this.newsDB.deleteApi(key)
+    this.newsDB.open()
 
   }
 
