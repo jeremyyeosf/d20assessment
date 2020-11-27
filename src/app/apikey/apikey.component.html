@@ -1,0 +1,17 @@
+<h2>Settings</h2>
+
+<form [formGroup]="apiForm">
+    <div class="form-group">
+      <label for="api">NewsAPI.org</label>
+      <input type="text" class="form-control" id="api" placeholder="API from newsapi.org" formControlName="apiInput">
+      <div class="error" *ngIf="apiForm.get('apiInput').hasError('required')">Please enter your API key</div>
+    </div>
+    
+    <div class="row">
+        <button type="button"  class="col btn btn-primary" (click)="goBack()">Back</button>
+        <button type="button"  class="col btn btn-danger" (click)="deleteAPI()">Delete</button>
+        <button type="button"  class="col btn btn-warning" (click)="addAPI()" [disabled]="apiForm.invalid">Add</button>
+    </div>
+    
+
+</form>
