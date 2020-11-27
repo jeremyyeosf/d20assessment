@@ -36,6 +36,7 @@ export class CountrylistComponent implements OnInit {
           // console.info('>>> searchResults: ', this.countryList)
           this.newsDB.addCountryList(this.countryList)
             .then()
+          this.countriesExist = true
         })
     } else {
       console.log('countries already found')

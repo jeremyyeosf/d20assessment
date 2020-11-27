@@ -14,16 +14,24 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    let keyfromDB = await this.newsDB.getApi().then()
-    console.log('apikey found: ', keyfromDB[0]['apikey'])
-
-    this.apikey = keyfromDB[0]['apikey']
+    // let keyfromDB = await this.newsDB.getApi().then()
+    // console.log('apikey found: ', keyfromDB[0]['apikey'])
+    // if (typeof keyfromDB[0]['apikey'] === 'string' ) {
+    //   this.apikey = keyfromDB[0]['apikey']
+    // } else {
+    //   return null
+    // }
     
-    console.log('apikeylength: ', this.apikey.length)
+
     if (this.apikey.length === 0) {
       this.router.navigate([ '/apikey' ])
     } else {
       this.router.navigate([ '/countrylist' ])
     }
+    
+    
+    
+    console.log('apikeylength: ', this.apikey.length)
+    
   }
 }

@@ -9,7 +9,9 @@ import { NewsComponent } from './news/news.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import {NewsDatabase} from './news.database'
+import {NewsDatabase} from './news.database';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment'
 
 const ROUTES: Routes = [
   // { path: '', component: AppComponent },
@@ -31,7 +33,8 @@ const ROUTES: Routes = [
     RouterModule.forRoot(ROUTES),
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
     
 
   ],
