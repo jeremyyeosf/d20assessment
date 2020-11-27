@@ -33,7 +33,6 @@ export class ApikeyComponent implements OnInit {
   async addAPI() {
     console.log('added api: ', this.apiForm.get('apiInput').value)
     const key: Api = {
-      
       apikey: this.apiForm.get('apiInput').value
     }
     await this.newsDB.addApi(key)

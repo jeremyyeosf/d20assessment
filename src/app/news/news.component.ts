@@ -16,12 +16,28 @@ export class NewsComponent implements OnInit {
   newsResults: Article[] = []
 
   constructor(private activatedRoute: ActivatedRoute, private http: HttpClient, private newsDB: NewsDatabase) { }
+  // ngOnInit(): void {
+  //   this.todoDB.getTodoSummary()
+  //     .then(result => {
+  //       this.todos = result;
+  //       console.info('>>> summary: ', result)
+  //     })
+  // }
+  async ngOnInit(): Promise<void> {
+    
+    let keyfromDB = await this.newsDB.getApi().then()
+    console.log('keyfromDB: ', keyfromDB[0]['apikey'])
+    // this.newsDB.getApi()
+    //   .then(result => {
+    //     this.apiKey = result;
+    //     console.info('>>> summary: ', result)
+    //   })
 
-  ngOnInit() {
 
-    this.newsDB.api.get('apikey')
-      .then(key => { this.apiKey = key.apikey })
-    console.log('searching with this key: ', this.apiKey)
+    // let apiKey = this.newsDB.getApi()
+    // // this.newsDB.api.get('apikey')
+    // //   .then(key => { this.apiKey = key.apikey })
+    // console.log('searching with this key: ', this.apiKey)
 
     this.countryName = this.activatedRoute.snapshot.params['countryName'];
 
@@ -33,7 +49,7 @@ export class NewsComponent implements OnInit {
       // .set('apiKey', this.apiKey)
     const headers= new HttpHeaders()
       // .set('content-type', 'application/json')
-      .set('X-Api-Key', '1bd572f98198417e92b53bf53f861733');
+      .set('X-Api-Key', keyfromDB[0]['apikey']);
 
     this.http
       .get<any>(url, { params: params, headers: headers })
@@ -53,7 +69,9 @@ export class NewsComponent implements OnInit {
           } as Article
         })
         console.log(this.newsResults)
+        this.newsDB.saveArticles(this.newsResults)
       })
+      
   }
   // ngOnInit(): void {
   //   this.countryName = this.activatedRoute.snapshot.params['countryName']

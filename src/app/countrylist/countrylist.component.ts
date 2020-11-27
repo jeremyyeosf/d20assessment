@@ -11,7 +11,7 @@ import { NewsDatabase } from '../news.database';
 })
 export class CountrylistComponent implements OnInit {
   
-  countryList
+  countryList: Country[] = []
   countriesExist: boolean = false
   countries = 'ae;ar;at;au;be;bg;br;ca;ch;cn;co;cu;cz;de;eg;fr;gb;gr;hk;hu;id;ie;il;in;it;jp;kr;lt;lv;ma;mx;my;ng;nl;no;nz;ph;pl;pt;ro;rs;ru;sa;se;sg;si;sk;th;tr;tw;ua;us;ve;za'
   // countries = ['ae', 'ar', 'at', 'au', 'be', 'bg', 'br', 'ca', 'ch', 'cn', 'co', 'cu', 'cz', 'de', 'eg', 'fr', 'gb', 'gr', 'hk', 'hu', 'id', 'ie', 'il', 'in', 'it', 'jp', 'kr', 'lt', 'lv', 'ma', 'mx', 'my', 'ng', 'nl', 'no', 'nz', 'ph', 'pl', 'pt', 'ro', 'rs', 'ru', 'sa', 'se', 'sg', 'si', 'sk', 'th', 'tr', 'tw', 'ua', 'us', 've', 'za']
@@ -32,8 +32,8 @@ export class CountrylistComponent implements OnInit {
             } as Country
           })
           console.info('>>> searchResults: ', this.countryList)
-          // this.newsDB.addCountryList(this.countryList)
-          //   .then()
+          this.newsDB.addCountryList(this.countryList)
+            .then()
         })
     } else {
       console.log('countries already found')

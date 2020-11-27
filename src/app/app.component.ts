@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NewsDatabase } from './news.database';
 
 @Component({
   selector: 'app-root',
@@ -7,12 +8,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  apikey: string = '1bd572f98198417e92b53bf53f861733'
+  apikey: string = ''
   // apikey: string = '1bd572f98198417e92b53bf53f861733'
-  constructor(private router: Router) {
+  constructor(private router: Router, private newsDB: NewsDatabase) {
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    let keyfromDB = await this.newsDB.getApi().then()
+    console.log('apikey found: ', keyfromDB[0]['apikey'])
+
+    this.apikey = keyfromDB[0]['apikey']
+    
     console.log('apikeylength: ', this.apikey.length)
     if (this.apikey.length === 0) {
       this.router.navigate([ '/apikey' ])

@@ -1,28 +1,32 @@
 import { Injectable } from '@angular/core';
 import Dexie from 'dexie';
-import { ApikeyComponent } from './apikey/apikey.component';
 import { Api, Country, Article} from './models';
 
 @Injectable()
 export class NewsDatabase extends Dexie {
 
-  api: Dexie.Table<Api, string>;
-  countries: Dexie.Table<Country, string>;
+  private api: Dexie.Table<Api, string>;
+  private countries: Dexie.Table<Country, string>;
+  private articles: Dexie.Table<Article, string>;
 
   constructor() {
     // database name
-    super('api')
+    super('NewsDB')
     // setup the schema for v1
     this.version(1).stores({
-        api: 'apikey'
+        api: '++id'
     })
     this.version(2).stores({
-        countries: 'name, flag_url'
+        countries: '++id'
+    })
+    this.version(3).stores({
+        articles: '++id'
     })
 
     // get a reference to the todo collection
     this.api = this.table('api')
     this.countries = this.table('countries')
+    this.articles = this.table('articles')
 
   }
 
@@ -35,8 +39,26 @@ export class NewsDatabase extends Dexie {
       return await this.api.clear()
   }
 
-  async addCountryList(countryList): Promise<any> {
-    return await this.countries.add(countryList)
+  async addCountryList(c: Country[]): Promise<any> {
+// @ts-ignore
+        return await this.countries.put(c)
+    
+  }
+
+  async saveArticles(a: Article[]): Promise<any> {
+    // @ts-ignore 
+    return await this.articles.put(a)
+
+      
+  }
+
+  async getApi(): Promise<any> {
+    return (await this.api.toArray())
+      .map(d => {
+        return {
+          apikey: d.apikey
+        } 
+      })
   }
 
 }
