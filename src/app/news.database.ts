@@ -51,7 +51,15 @@ export class NewsDatabase extends Dexie {
 
       
   }
-
+  
+  async getCountryName(): Promise<any> {
+    return (await this.countries.toArray())
+      .map(d => {
+        return {
+          name: d.name
+        } 
+      })
+  }
   async getApi(): Promise<any> {
     return (await this.api.toArray())
       .map(d => {

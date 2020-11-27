@@ -19,11 +19,13 @@ export class CountrylistComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient, private newsDB: NewsDatabase) { }
 
   ngOnInit(): void {
+    
+
     if( !this.countriesExist) {
       let r = this.http.get<any>(`https://restcountries.eu/rest/v2/alpha?codes=${this.countries}`)
         .toPromise()
         .then(resp => {
-          console.log('resp: ', resp)
+          // console.log('resp: ', resp)
           this.countryList = resp.map(r => {
             return {
               name: r['name'],
@@ -31,7 +33,7 @@ export class CountrylistComponent implements OnInit {
               alpha2Code: r['alpha2Code']
             } as Country
           })
-          console.info('>>> searchResults: ', this.countryList)
+          // console.info('>>> searchResults: ', this.countryList)
           this.newsDB.addCountryList(this.countryList)
             .then()
         })

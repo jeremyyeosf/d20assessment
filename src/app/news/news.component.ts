@@ -69,7 +69,6 @@ export class NewsComponent implements OnInit {
           } as Article
         })
         console.log(this.newsResults)
-        this.newsDB.saveArticles(this.newsResults)
       })
       
   }
