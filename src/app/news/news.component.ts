@@ -70,7 +70,7 @@ export class NewsComponent implements OnInit {
         })
         console.log(this.newsResults)
       })
-      
+      this.newsDB.saveArticles(this.newsResults)
   }
   // ngOnInit(): void {
   //   this.countryName = this.activatedRoute.snapshot.params['countryName']
