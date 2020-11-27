@@ -27,7 +27,8 @@ export class CountrylistComponent implements OnInit {
           this.countryList = resp.map(r => {
             return {
               name: r['name'],
-              flag_url: r['flag']
+              flag_url: r['flag'],
+              alpha2Code: r['alpha2Code']
             } as Country
           })
           console.info('>>> searchResults: ', this.countryList)

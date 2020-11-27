@@ -7,11 +7,10 @@
   export interface Country {
       name: string;
       flag_url: string;
+      alpha2Code: string
   }
 
-  export interface CountryList {
-      list: Country[]
-  }
+
   
   export interface Article {
     source: string;
@@ -24,9 +23,7 @@
     content: string;
   }
   
-  export interface NewsArticles {
-    newsArticles: Article[]
-  }
+
 
 
   

@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import Dexie from 'dexie';
 import { ApikeyComponent } from './apikey/apikey.component';
-import { Api, Country, CountryList, Article, NewsArticles} from './models';
+import { Api, Country, Article} from './models';
 
 @Injectable()
 export class NewsDatabase extends Dexie {
 
-  private api: Dexie.Table<Api, string>;
-  private countries: Dexie.Table<Country, string>;
+  api: Dexie.Table<Api, string>;
+  countries: Dexie.Table<Country, string>;
 
   constructor() {
     // database name

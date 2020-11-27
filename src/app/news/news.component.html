@@ -1,2 +1,23 @@
 <h4>News from {{ countryName }}</h4>
+<button type="button"  class="col btn btn-primary" [routerLink]="['/countrylist']">Back</button>
 
+
+<div *ngFor="let r of newsResults">
+    <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">{{r.title}}</h5>
+          <img src="{{r.image_url}}" alt="">
+          <p class="card-text">Author: {{r.author}}</p>
+          <p class="card-text">Description: {{r.description}}</p>
+          <p class="card-text">Content: {{r.content}}</p>
+          <a href="{{r.article_url}}" class="btn btn-primary">Link to article</a>
+        </div>
+        <div class="card-footer text-muted">
+            Source: {{r.source}}
+          </div>
+        <div class="card-footer text-muted">
+          Published at: {{r.published_time}}
+        </div>
+    </div>
+    <br>
+</div>

@@ -2,7 +2,7 @@
 <button type="button"  class="btn btn-primary" (click)="setAPI()">Settings</button>
 
 <ul class="list-group" *ngFor="let r of countryList">
-    <li class="list-group-item d-flex justify-content-between align-items-center" [routerLink]="['/countrylist', r.name]">
+    <li class="list-group-item d-flex justify-content-between align-items-center" [routerLink]="['/countrylist', r.alpha2Code]">
       {{ r.name }}
       <img class="flag" src="{{ r.flag_url }}" alt="">
     </li>
